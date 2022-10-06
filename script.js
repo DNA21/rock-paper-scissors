@@ -17,10 +17,18 @@ function getComputerChoice(){
 // Returns choice with the first letter capitalized
 
 function getPlayerChoice(){
-    let playerChoice = prompt('Rock, Paper, or Scissors:');
-    playerChoice = playerChoice.toLowerCase();
-    let firstLetter = playerChoice.charAt(0).toUpperCase();
-    playerChoice = firstLetter.concat(playerChoice.slice(1));
+    let player;
+    const playerChoice = document.querySelectorAll('.choice');
+    playerChoice.forEach(div => div.addEventListener('click', () => {
+        player = div.textContent;
+    }))
+    console.log(player)
+    //choice = playerChoice.forEach('.choice' => );
+    //console.log(choice) 
+    // prompt('Rock, Paper, or Scissors:');
+    //playerChoice = playerChoice.toLowerCase();
+    // let firstLetter = playerChoice.charAt(0).toUpperCase();
+    // playerChoice = firstLetter.concat(playerChoice.slice(1));
     return playerChoice
 }
 
@@ -63,8 +71,8 @@ function game(){
         // If Player wins, return player winner else return computer winner
     
         } else if (playerSelection === 'Rock' && computerSelection === 'Paper' || 
-        playerSelection === 'Paper' && computerSelection === 'Scissors' || 
-        playerSelection === 'Scissors' && computerSelection === 'Rock'){
+          playerSelection === 'Paper' && computerSelection === 'Scissors' || 
+          playerSelection === 'Scissors' && computerSelection === 'Rock'){
             playerWin += 1;
             console.log("You Won! " + playerSelection + ' beats ' + computerSelection)
             continue

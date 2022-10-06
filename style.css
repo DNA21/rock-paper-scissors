@@ -1,0 +1,21 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.choices {
+    display: flex;
+    justify-content: space-between;
+}
+
+.choice {
+    border: 2px solid black;
+}
+
+img {
+    height: 300px;
+    width: 300px;
+}
+
+p {
+    text-align: center;
+}
