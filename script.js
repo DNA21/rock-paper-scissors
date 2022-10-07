@@ -19,41 +19,63 @@ function getComputerChoice(){
 // Returns choice with the first letter capitalized
 
 function getPlayerChoice(e){
+    const computerChoice = getComputerChoice();
     let playerChoice = (e.target.getAttribute('id'));
+
     playerChoice = playerChoice.toLowerCase();
     let firstLetter = playerChoice.charAt(0).toUpperCase();
     playerChoice = firstLetter.concat(playerChoice.slice(1));
+
     console.log(playerChoice) 
+    const playerWinner = playRound(playerChoice, computerChoice)
+    score(playerWinner, playerChoice, computerChoice)
+
     return playerChoice
 }
+
 
 // run getPlayerChoice function when one of the images is clicked. 
 
 playerChoices.forEach(div => {div.addEventListener('click', getPlayerChoice)})
 
-// Decide winner
+// Decide round winner
 
-function playRound(playerSelection, computerSelection, playerWin, computerWin){
+function playRound(playerSelection, computerSelection){
+    let playerWin = false;
+
     if (playerSelection === computerSelection){
         return "Tie!"
     
-    // If Player wins, return player winner else return computer winner
+    // If Computer win, returns false boolean
+    // If Player wins, returns true boolean 
 
     } else if (playerSelection === 'Rock' && computerSelection === 'Paper' || 
     playerSelection === 'Paper' && computerSelection === 'Scissors' || 
     playerSelection === 'Scissors' && computerSelection === 'Rock'){
-        playerWin += 1;
-        return "You Won! " + playerSelection + ' beats ' + computerSelection, playerWin
+        return playerWin
     } else {
-        computerWin += 1;
-        return "You Lose! " + computerSelection + ' beats ' + playerSelection, computerWin
+        playerWin = true;
+        return playerWin
     }
 }
 
-//const playerSelection = getPlayerChoice();
-//const computerSelection = getComputerChoice();
+// If player wins, shows player win results
+// If computer wins, shows computer win results
+// Updates score
 
-//console.log(playRound(playerSelection, computerSelection))
+function score(winner, playerChoice, computerChoice){
+    results = document.querySelector('.results')
+    if(winner === true){
+        results.textContent = 'You won! ' + playerChoice + ' beats ' + computerChoice;
+    }
+    else if(winner === false){
+        results.textContent = 'You lost! ' + playerChoice + ' loses to ' + computerChoice;
+    }
+    else{
+        results.textContent = 'Tie!'
+    }
+}
+
 
 // play a five round game and keep score
 
