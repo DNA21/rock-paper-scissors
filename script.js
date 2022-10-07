@@ -1,6 +1,14 @@
 // A game of rock paper scissors played against the computer
 
 const playerChoices = document. querySelectorAll('.choice');
+let playerScore = 0;
+let computerScore = 0;
+
+const player = document.querySelector('#playerScore')
+const computer = document.querySelector('#computerScore')
+
+player.textContent = `Player Score: ${playerScore}`
+computer.textContent = `ComputerScore: ${computerScore}`
 
 // Computer randomly chooses rock paper or scissors
 
@@ -65,14 +73,20 @@ function playRound(playerSelection, computerSelection){
 
 function score(winner, playerChoice, computerChoice){
     results = document.querySelector('.results')
+    //playerScore = document.querySelector('.playerScore');
+    //computerScore = document.querySelector('.computerScore');
     if(winner === true){
         results.textContent = 'You won! ' + playerChoice + ' beats ' + computerChoice;
+        playerScore += 1;
+        player.textContent = `Player Score: ${playerScore}`;
     }
     else if(winner === false){
         results.textContent = 'You lost! ' + playerChoice + ' loses to ' + computerChoice;
+        computerScore += 1;
+        computer.textContent = `ComputerScore: ${computerScore}`;
     }
     else{
-        results.textContent = 'Tie!'
+        results.textContent = 'Tie! You chose ' + playerChoice + ' and the computer chose ' + computerChoice;
     }
 }
 
