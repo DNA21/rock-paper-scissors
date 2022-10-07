@@ -1,6 +1,6 @@
 // A game of rock paper scissors played against the computer
 
-const playerChoices = document. querySelectorAll('.choice');
+const playerChoices = document.querySelectorAll('.choice');
 let playerScore = 0;
 let computerScore = 0;
 
@@ -41,11 +41,6 @@ function getPlayerChoice(e){
     return playerChoice
 }
 
-
-// run getPlayerChoice function when one of the images is clicked. 
-
-playerChoices.forEach(div => {div.addEventListener('click', getPlayerChoice)})
-
 // Decide round winner
 
 function playRound(playerSelection, computerSelection){
@@ -79,17 +74,50 @@ function score(winner, playerChoice, computerChoice){
         results.textContent = 'You won! ' + playerChoice + ' beats ' + computerChoice;
         playerScore += 1;
         player.textContent = `Player Score: ${playerScore}`;
+        isWinner(playerScore, computerScore)
     }
     else if(winner === false){
         results.textContent = 'You lost! ' + playerChoice + ' loses to ' + computerChoice;
         computerScore += 1;
         computer.textContent = `ComputerScore: ${computerScore}`;
+        isWinner(playerScore, computerScore)
     }
     else{
         results.textContent = 'Tie! You chose ' + playerChoice + ' and the computer chose ' + computerChoice;
     }
 }
 
+function isWinner(pScore, cScore){
+    const winner = document.querySelector('h2')
+    if (pScore === 5){
+        winner.textContent = 'Player Wins!'
+        playerChoices.forEach(div => {div.removeEventListener('click', getPlayerChoice)})
+        playAgain();
+    } else if (cScore ===5){
+        winner.textContent = 'Computer Wins'
+        playerChoices.forEach(div => {div.removeEventListener('click', getPlayerChoice)})
+        playAgain();
+    }
+}
+
+function playAgain(){
+    const endGame = document.querySelector('#playAgain')
+    const button = document.createElement('button')
+    button.textContent = 'Play Again?'
+    button.style.cssText = 'text-align: center;'
+
+    endGame.appendChild(button);
+    button.addEventListener('click', () => {location.reload()})
+}
+
+
+// run getPlayerChoice function when one of the images is clicked. 
+
+playerChoices.forEach(div => {div.addEventListener('click', getPlayerChoice)})
+
+/* --------------------------------------------------------------
+            OLD game function
+------------------------------------------------------------------
 
 // play a five round game and keep score
 
@@ -122,3 +150,5 @@ function game(){
 }
 
 // console.log(game());
+
+*/
