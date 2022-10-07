@@ -1,5 +1,7 @@
 // A game of rock paper scissors played against the computer
 
+const playerChoices = document. querySelectorAll('.choice');
+
 // Computer randomly chooses rock paper or scissors
 
 function getComputerChoice(){
@@ -16,21 +18,18 @@ function getComputerChoice(){
 // Player chooses selection
 // Returns choice with the first letter capitalized
 
-function getPlayerChoice(){
-    let player;
-    const playerChoice = document.querySelectorAll('.choice');
-    playerChoice.forEach(div => div.addEventListener('click', () => {
-        player = div.textContent;
-    }))
-    console.log(player)
-    //choice = playerChoice.forEach('.choice' => );
-    //console.log(choice) 
-    // prompt('Rock, Paper, or Scissors:');
-    //playerChoice = playerChoice.toLowerCase();
-    // let firstLetter = playerChoice.charAt(0).toUpperCase();
-    // playerChoice = firstLetter.concat(playerChoice.slice(1));
+function getPlayerChoice(e){
+    let playerChoice = (e.target.getAttribute('id'));
+    playerChoice = playerChoice.toLowerCase();
+    let firstLetter = playerChoice.charAt(0).toUpperCase();
+    playerChoice = firstLetter.concat(playerChoice.slice(1));
+    console.log(playerChoice) 
     return playerChoice
 }
+
+// run getPlayerChoice function when one of the images is clicked. 
+
+playerChoices.forEach(div => {div.addEventListener('click', getPlayerChoice)})
 
 // Decide winner
 
@@ -86,4 +85,4 @@ function game(){
     return 'Player: ' + playerWin + ' Computer: ' + computerWin
 }
 
-console.log(game());
+// console.log(game());
