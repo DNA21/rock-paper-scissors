@@ -9,12 +9,14 @@ h1, h2, h3 {
 
 .choices {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
+/*
 .choice {
     border: 2px solid black;
 }
+*/
 
 img {
     height: 300px;
@@ -23,12 +25,13 @@ img {
 
 p {
     text-align: center;
+    margin-top: 150px;
 }
 
 .score {
     display: flex;
     justify-content: space-around;
-    margin-top: 200px;
+    margin-top: 50px;
 }
 
 
